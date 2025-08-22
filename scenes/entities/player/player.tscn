@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1aq7ya3d2yrw"]
+[gd_scene load_steps=8 format=3 uid="uid://d1aq7ya3d2yrw"]
 
 [ext_resource type="Script" uid="uid://ht5bja10a1kq" path="res://scenes/entities/player/player.gd" id="1_l17oj"]
 [ext_resource type="Texture2D" uid="uid://dvk2i1uglvrjw" path="res://assets/sprites/icon.svg" id="1_wmv1v"]
 [ext_resource type="Script" uid="uid://h87fn3xpga2v" path="res://scenes/entities/player/states/player_state_machine.gd" id="3_g2g7f"]
-[ext_resource type="Script" uid="uid://bpcysrxvgtcy7" path="res://scenes/entities/player/states/idle.gd" id="4_yg5k4"]
-[ext_resource type="Script" uid="uid://dtt6n8v3gwgej" path="res://scenes/entities/player/states/moving.gd" id="5_yg5k4"]
+[ext_resource type="Script" uid="uid://bq6j2krjjyfcn" path="res://scripts/state/state.gd" id="5_8akj5"]
 [ext_resource type="Script" uid="uid://bvpq25uodyj4" path="res://scenes/entities/player/states/immobile.gd" id="6_qdyt2"]
 [ext_resource type="Script" uid="uid://bgw36q3piobvr" path="res://scenes/entities/player/debug/current_state_label.gd" id="7_g2g7f"]
 
@@ -22,24 +21,17 @@ texture = ExtResource("1_wmv1v")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_oj104")
 
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]
+[node name="PlayerStateMachine" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_g2g7f")
-default_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://cy2fu56tbwb6l"
-
-[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("4_yg5k4")
-player = NodePath("../..")
-metadata/_custom_type_script = "uid://bq6j2krjjyfcn"
-
-[node name="Moving" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("5_yg5k4")
-player = NodePath("../..")
-metadata/_custom_type_script = "uid://bq6j2krjjyfcn"
 
 [node name="Immobile" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_qdyt2")
+metadata/_custom_type_script = "uid://bq6j2krjjyfcn"
+
+[node name="Playing" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("5_8akj5")
 metadata/_custom_type_script = "uid://bq6j2krjjyfcn"
 
 [node name="Debug" type="Control" parent="."]
@@ -48,6 +40,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="CurrentStateLabel" type="Label" parent="Debug"]
+layout_mode = 0
 offset_left = -32.0
 offset_top = -65.0
 offset_right = 30.0
@@ -55,3 +48,5 @@ offset_bottom = -42.0
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_g2g7f")
+
+[node name="Camera2D" type="Camera2D" parent="."]

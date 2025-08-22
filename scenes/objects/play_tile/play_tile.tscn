@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://rp2qvpbxv8jx"]
+
+[ext_resource type="Script" uid="uid://d01i8lhhg6kdt" path="res://scenes/objects/play_tile/play_tile.gd" id="1_ih0hb"]
+
+[sub_resource type="Gradient" id="Gradient_bnd4y"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_clexi"]
+gradient = SubResource("Gradient_bnd4y")
+width = 96
+height = 96
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7wvtv"]
+radius = 47.0106
+
+[node name="PlayTile" type="Area2D"]
+script = ExtResource("1_ih0hb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_clexi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7wvtv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

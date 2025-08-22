@@ -1,5 +1,5 @@
 extends Control
-class_name InfoMenu
+class_name PlayMenu
 
 var title_menu: PackedScene = load("uid://l6xve34c75ym");
 

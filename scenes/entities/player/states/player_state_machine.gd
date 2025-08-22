@@ -3,8 +3,7 @@ class_name PlayerStateMachine
 
 class States:
 	const immobile: String = 'Immobile';
-	const moving: String = 'Moving';
-	const idle: String = 'Idle';
+	const playing: String = 'Playing'
 
 #region Shared State Functions
 static func get_input_vector():

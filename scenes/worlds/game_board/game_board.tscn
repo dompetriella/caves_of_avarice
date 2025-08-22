@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu07udcl6h7nc"]
+
+[ext_resource type="Script" uid="uid://c1hetdgacdqk4" path="res://scenes/worlds/game_board/game_board.gd" id="1_t1llu"]
+[ext_resource type="Script" uid="uid://ci35q3sn76xtn" path="res://scripts/managers/play_tiles_manager.gd" id="2_yhsbf"]
+[ext_resource type="PackedScene" uid="uid://d1aq7ya3d2yrw" path="res://scenes/entities/player/player.tscn" id="3_yhsbf"]
+[ext_resource type="Script" uid="uid://b8xbo051xxcd7" path="res://scenes/worlds/game_board/ui/ui.gd" id="4_csl0o"]
+
+[node name="GameBoard" type="Node2D" groups=["GameBoard"]]
+script = ExtResource("1_t1llu")
+
+[node name="PlayTilesManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 615)
+script = ExtResource("2_yhsbf")
+
+[node name="Player" parent="." instance=ExtResource("3_yhsbf")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_csl0o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="PlayerUp" type="Button" parent="CanvasLayer/UI/HBoxContainer"]
+layout_mode = 2
+text = "Player Up"
+
+[node name="PlayerDown" type="Button" parent="CanvasLayer/UI/HBoxContainer"]
+layout_mode = 2
+text = "Player Down"
+
+[node name="Player3Down" type="Button" parent="CanvasLayer/UI/HBoxContainer"]
+layout_mode = 2
+text = "Player 3 Down"
+
+[node name="Player4Up" type="Button" parent="CanvasLayer/UI/HBoxContainer"]
+layout_mode = 2
+text = "Player 4 Up"
+
+[connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/PlayerUp" to="CanvasLayer/UI" method="_on_player_up_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/PlayerDown" to="CanvasLayer/UI" method="_on_player_down_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/Player3Down" to="CanvasLayer/UI" method="_on_player_3_down_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/Player4Up" to="CanvasLayer/UI" method="_on_player_4_up_pressed"]

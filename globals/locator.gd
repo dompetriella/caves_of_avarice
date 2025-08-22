@@ -17,3 +17,9 @@ func get_player() -> Player:
 	if (player == null):
 		print_debug("WARNING - Player Node is Null")
 	return player;
+	
+func get_game_board() -> GameBoard:
+	var game_board: GameBoard = get_tree().get_first_node_in_group("GameBoard");
+	if (game_board == null):
+		print_debug("WARNING - GameBoard Node is Null")
+	return game_board;
