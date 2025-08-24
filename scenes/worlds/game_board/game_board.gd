@@ -11,7 +11,7 @@ var player_position_dictionary: Dictionary[int, int];
 func _ready() -> void:
 	play_tiles_manager.player_position_changed.connect(_on_player_position_changed);
 	
-	play_tiles_manager.generate_base_play_tiles(20);
+	play_tiles_manager.generate_base_play_tiles(45);
 	player.global_position = play_tiles_manager.play_tiles_list[0].global_position;
 	
 func get_play_tiles():

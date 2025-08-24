@@ -7,4 +7,5 @@ var index: int;
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Player):
+		print_debug('Player has entered: %d' % index);
 		player_entered_tile.emit(body.id, index);

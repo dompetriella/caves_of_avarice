@@ -7,11 +7,11 @@ const PLAY_TILE = preload("uid://rp2qvpbxv8jx");
 
 const ui_border_width: int = 128;
 
-const generation_x_min: int = ui_border_width;
-const generation_x_max: int = GlobalConstants.SCREEN_WIDTH - ui_border_width;
+const generation_x_min: int = ui_border_width * 2;
+const generation_x_max: int = GlobalConstants.SCREEN_WIDTH - (ui_border_width * 2);
 
-const y_min_gap: float = GlobalConstants.PLAY_TILE_HEIGHT * 1.5;
-const y_max_gap: float = GlobalConstants.PLAY_TILE_HEIGHT * 2;
+const y_min_gap: float = 128;
+const y_max_gap: float = 256;
 
 var play_tiles_list: Array[PlayTile] = [];
 
@@ -21,6 +21,7 @@ func generate_base_play_tiles(tile_number: int):
 	
 	for i in range(0, tile_number):
 		var play_tile_instance: PlayTile = PLAY_TILE.instantiate();
+		play_tile_instance.index = i;
 		play_tile_instance.player_entered_tile.connect(_on_player_entered_tile);
 		
 		var positioned_play_tile: PlayTile = _set_tile_position(play_tile_instance, i, current_base_y);

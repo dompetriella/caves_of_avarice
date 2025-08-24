@@ -26,32 +26,48 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_csl0o")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 8.0
+offset_bottom = 43.0
 grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="PlayerUp" type="Button" parent="CanvasLayer/UI/HBoxContainer"]
+[node name="RollDieButton" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Player Up"
+text = "Roll For Movement"
 
-[node name="PlayerDown" type="Button" parent="CanvasLayer/UI/HBoxContainer"]
+[node name="MoveTotalLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
 layout_mode = 2
-text = "Player Down"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Player3Down" type="Button" parent="CanvasLayer/UI/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
 layout_mode = 2
-text = "Player 3 Down"
+theme_override_constants/separation = 32
+alignment = 1
 
-[node name="Player4Up" type="Button" parent="CanvasLayer/UI/HBoxContainer"]
+[node name="MoveUp" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Player 4 Up"
+text = "Move Up"
 
-[connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/PlayerUp" to="CanvasLayer/UI" method="_on_player_up_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/PlayerDown" to="CanvasLayer/UI" method="_on_player_down_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/Player3Down" to="CanvasLayer/UI" method="_on_player_3_down_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/Player4Up" to="CanvasLayer/UI" method="_on_player_4_up_pressed"]
+[node name="MoveDown" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Move Down"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "End Turn"
+
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/RollDieButton" to="CanvasLayer/UI" method="_on_roll_die_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer2/MoveUp" to="CanvasLayer/UI" method="_on_move_up_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer2/MoveDown" to="CanvasLayer/UI" method="_on_move_down_pressed"]
